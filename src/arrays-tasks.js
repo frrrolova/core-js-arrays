@@ -565,8 +565,12 @@ function findLongestIncreasingSubsequence(nums) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  const res = [];
+  if (!arr.length) {
+    return res;
+  }
+  return arr.map((el, i) => Array(i + 1).fill(el)).flat(1);
 }
 
 /**
@@ -599,8 +603,20 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const nums = {
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+    zero: 0,
+  };
+  return arr.sort((a, b) => nums[a] - nums[b]);
 }
 
 /**
@@ -622,8 +638,19 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  if (arr.length === 1) {
+    return arr;
+  }
+  if (arr.length <= 3) {
+    return arr.reverse();
+  }
+  const head = arr.slice(0, Math.floor(arr.length / 2));
+  const tail = arr.slice(-Math.floor(arr.length / 2));
+  if (arr.length % 2 === 0) {
+    return [...tail, ...head];
+  }
+  return tail.concat(arr[Math.floor(arr.length / 2)], head);
 }
 
 module.exports = {
